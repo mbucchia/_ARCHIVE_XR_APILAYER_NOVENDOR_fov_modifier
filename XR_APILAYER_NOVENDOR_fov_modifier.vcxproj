@@ -100,10 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="Install-Layer.ps1" />
+    <None Include="Install-XR_APILAYER_NOVENDOR_fov_multiplier.ps1" />
     <None Include="packages.config" />
     <None Include="README.md" />
-    <None Include="Uninstall-Layer.ps1" />
+    <None Include="Uninstall-XR_APILAYER_NOVENDOR_fov_multiplier.ps1" />
     <None Include="XR_APILAYER_NOVENDOR_fov_modifier.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

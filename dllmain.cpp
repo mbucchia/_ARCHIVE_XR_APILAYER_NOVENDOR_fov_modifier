@@ -32,6 +32,8 @@ namespace {
     void Log(const char* fmt, ...);
 
     struct {
+        bool loaded;
+
         float leftAngleUp;
         float leftAngleDown;
         float leftAngleLeft;
@@ -43,13 +45,17 @@ namespace {
         
         void Dump()
         {
-            Log("Using FOV for left %.3f %.3f %.3f %.3f and right %.3f %.3f %.3f %.3f\n",
-                leftAngleUp, leftAngleDown, leftAngleLeft, leftAngleRight,
-                rightAngleUp, rightAngleDown, rightAngleLeft, rightAngleRight);
+            if (loaded)
+            {
+                Log("Using FOV for left %.3f %.3f %.3f %.3f and right %.3f %.3f %.3f %.3f\n",
+                    leftAngleUp, leftAngleDown, leftAngleLeft, leftAngleRight,
+                    rightAngleUp, rightAngleDown, rightAngleLeft, rightAngleRight);
+            }
         }
 
         void Reset()
         {
+            loaded = false;
             leftAngleUp = 1.0f;
             leftAngleDown = 1.0f;
             leftAngleLeft = 1.0f;
@@ -162,6 +168,8 @@ namespace {
             }
             configFile.close();
 
+            config.loaded = true;
+
             return true;
         }
 
@@ -214,7 +222,7 @@ namespace {
 
         // Call the chain to resolve the next function pointer.
         const XrResult result = nextXrGetInstanceProcAddr(instance, name, function);
-        if (result == XR_SUCCESS)
+        if (config.loaded && result == XR_SUCCESS)
         {
             const std::string apiName(name);
 
@@ -256,13 +264,13 @@ namespace {
             return XR_ERROR_INITIALIZATION_FAILED;
         }
 
+        // Store the next xrGetInstanceProcAddr to resolve the functions no handled by our layer.
+        nextXrGetInstanceProcAddr = apiLayerInfo->nextInfo->nextGetInstanceProcAddr;
+
         // Call the chain to create the instance.
         const XrResult result = apiLayerInfo->nextInfo->nextCreateApiLayerInstance(instanceCreateInfo, apiLayerInfo, instance);
         if (result == XR_SUCCESS)
         {
-            // Store the next xrGetInstanceProcAddr to resolve the functions no handled by our layer.
-            nextXrGetInstanceProcAddr = apiLayerInfo->nextInfo->nextGetInstanceProcAddr;
-
             // Identify the application and load our configuration. Try by application first, then fallback to engines otherwise.
             config.Reset();
             if (!LoadConfiguration(instanceCreateInfo->applicationInfo.applicationName)) {

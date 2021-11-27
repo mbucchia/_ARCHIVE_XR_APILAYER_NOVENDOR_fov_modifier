@@ -28,7 +28,7 @@
     <None Include="XR_APILAYER_NOVENDOR_fov_modifier.json" />
     <None Include=".gitignore" />
     <None Include="README.md" />
-    <None Include="Install-Layer.ps1" />
-    <None Include="Uninstall-Layer.ps1" />
+    <None Include="Install-XR_APILAYER_NOVENDOR_fov_multiplier.ps1" />
+    <None Include="Uninstall-XR_APILAYER_NOVENDOR_fov_multiplier.ps1" />
   </ItemGroup>
 </Project>

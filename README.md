@@ -2,15 +2,15 @@
 
 ## Download
 
-A ZIP file containing the necessary files to install and use the layer can be found on the release page: https://github.com/mbucchia/XR_APILAYER_NOVENDOR_fov_modifier/releases.
+A ZIP file containing the necessary files to install and use the layer can be found on the release page: https://github.com/mbucchia/XR_APILAYER_NOVENDOR_fov_modifier/releases. Check under *Assets*.
 
 ## Setup
 
 1. Create a folder in `%ProgramFiles%`. It's important to make it in `%ProgramFiles%` so that UWP applications can access it! For example: `C:\Program Files\OpenXR-API-Layers`.
 
-2. Place `XR_APILAYER_NOVENDOR_fov_modifier.json`, `XR_APILAYER_NOVENDOR_fov_modifier.dll`, `Install-Layer.ps1` and `Uninstall-Layer.ps1` in the folder created above.
+2. Place `XR_APILAYER_NOVENDOR_fov_modifier.json`, `XR_APILAYER_NOVENDOR_fov_modifier.dll`, `Install-XR_APILAYER_NOVENDOR_fov_modifier.ps1` and `Uninstall-XR_APILAYER_NOVENDOR_fov_modifier.ps1` in the folder created above.
 
-3. Run the script `Install-Layer.ps1` **as Administrator**.
+3. Run the script `Install-XR_APILAYER_NOVENDOR_fov_modifier.ps1`. You will be prompted for elevation (running as Administrator).
 
 4. Start the OpenXR Developer Tools for Windows Mixed Reality, under the *System Status* tab, scroll down to *API Layers*. A layer named `XR_APILAYER_NOVENDOR_fov_modifier` should be listed.
 
@@ -18,7 +18,7 @@ A ZIP file containing the necessary files to install and use the layer can be fo
 
 1. Go to the folder where the API layer is installed. For example: `C:\Program Files\OpenXR-API-Layers`.
 
-2. Run the script `Uninstall-Layer.ps1` **as Administrator**.
+2. Run the script `Uninstall-XR_APILAYER_NOVENDOR_fov_modifier.ps1` You will be prompted for elevation (running as Administrator).
 
 3. Start the OpenXR Developer Tools for Windows Mixed Reality, under the *System Status* tab, scroll down to *API Layers*. There should be no layer named `XR_APILAYER_NOVENDOR_fov_modifier`.
 
@@ -35,7 +35,6 @@ dllHome is "C:\Program Files\OpenXR-API-Layers"
 XR_APILAYER_NOVENDOR_fov_modifier layer is active
 Could not load config for "FS2020"
 Could not load config for "Zouna"
-Using FOV for left 1.000 1.000 1.000 1.000 and right 1.000 1.000 1.000 
 ```
 
 4. In the same folder where `XR_APILAYER_NOVENDOR_fov_modifier.json` was copied during setup, create a file named after the application, and with the extension `.cfg`. For example `C:\Program Files\OpenXR-API-Layers\FS2020.cfg`.
