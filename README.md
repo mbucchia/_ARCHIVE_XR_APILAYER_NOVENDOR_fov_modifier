@@ -1,5 +1,9 @@
 # FOV modifier OpenXR API Layer
 
+## Download
+
+A ZIP file containing the necessary files to install and use the layer can be found on the release page: https://github.com/mbucchia/XR_APILAYER_NOVENDOR_fov_modifier/releases.
+
 ## Setup
 
 1. Create a folder in `%ProgramFiles%`. It's important to make it in `%ProgramFiles%` so that UWP applications can access it! For example: `C:\Program Files\OpenXR-API-Layers`.
