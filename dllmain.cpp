@@ -268,7 +268,9 @@ namespace {
         nextXrGetInstanceProcAddr = apiLayerInfo->nextInfo->nextGetInstanceProcAddr;
 
         // Call the chain to create the instance.
-        const XrResult result = apiLayerInfo->nextInfo->nextCreateApiLayerInstance(instanceCreateInfo, apiLayerInfo, instance);
+        XrApiLayerCreateInfo chainApiLayerInfo = *apiLayerInfo;
+        chainApiLayerInfo.nextInfo = apiLayerInfo->nextInfo->next;
+        const XrResult result = apiLayerInfo->nextInfo->nextCreateApiLayerInstance(instanceCreateInfo, &chainApiLayerInfo, instance);
         if (result == XR_SUCCESS)
         {
             // Identify the application and load our configuration. Try by application first, then fallback to engines otherwise.
